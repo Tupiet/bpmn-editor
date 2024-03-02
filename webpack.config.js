@@ -20,6 +20,14 @@ module.exports = {
       {
         test: /\.bpmn$/,
         use: 'raw-loader'
+      },
+      { // * Add the bpmnlint-loader to the rules
+        test: /\.bpmnlintrc$/,
+        use: [
+          {
+            loader: 'bpmnlint-loader',
+          }
+        ]
       }
     ]
   },

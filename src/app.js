@@ -1,16 +1,18 @@
 import 'bpmn-js/dist/assets/diagram-js.css';
 import 'bpmn-js/dist/assets/bpmn-js.css';
-
 import 'bpmn-js/dist/assets/bpmn-font/css/bpmn-embedded.css';
+
+import 'bpmn-js-bpmnlint/dist/assets/css/bpmn-js-bpmnlint.css'; // * CSS for bpmn-js-bpmnlint
 
 import './style.css';
 
 import $ from 'jquery';
 
 import BpmnModeler from 'bpmn-js/lib/Modeler';
-
 import diagramXML from '../resources/newDiagram.bpmn';
 
+import lintModule from 'bpmn-js-bpmnlint'; // * Module of the linter
+import bpmnlintConfig from '../.bpmnlintrc'; // * File with the settings of the linter
 
 var container = $('#js-drop-zone');
 
@@ -18,7 +20,9 @@ var modeler = new BpmnModeler({
   container: '#js-canvas',
   keyboard: {
     bindTo: window
-  }
+  },
+  linting: { bpmnlint: bpmnlintConfig }, // * Append the linting to the modeler 
+  additionalModules: [ lintModule ] // * Append the lintModule to the modeler
 });
 
 function createNewDiagram() {
